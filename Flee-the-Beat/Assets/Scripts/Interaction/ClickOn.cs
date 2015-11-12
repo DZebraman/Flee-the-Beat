@@ -20,7 +20,6 @@ public class ClickOn : MonoBehaviour {
 		if(Input.GetMouseButtonDown(0)){
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			Debug.DrawRay(Camera.main.transform.position,ray);
 			if(Physics.Raycast(ray,out hit)){
 				if(isClickableMap[hit.transform.gameObject] != null){
 					Debug.Log("Clicked");
