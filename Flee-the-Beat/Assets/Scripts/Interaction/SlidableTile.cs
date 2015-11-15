@@ -5,11 +5,15 @@ public class SlidableTile : MonoBehaviour
 {
     public bool isVertical;
     private bool mouseDown = false;
+	private ControllerScript control;
+	public int row, column;
+	Vector3 mousePos, prevPos;
+	public int length;
 
     // Use this for initialization
     void Start()
     {
-
+		control = GameObject.Find("Controller").GetComponent<ControllerScript> ();
     }
 
     // Update is called once per frame
@@ -18,12 +22,12 @@ public class SlidableTile : MonoBehaviour
 
     }
 
-
     void OnMouseOver()
     {
         if (Input.GetMouseButton(0))
         {
-            mouseDown = true;
+			mouseDown = true;
+			prevPos = Input.mousePosition;
         }
         else
         {
@@ -42,17 +46,70 @@ public class SlidableTile : MonoBehaviour
     {
         if (mouseDown)
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos = Input.mousePosition;
             mousePos.z = transform.position.z;
-            if (isVertical)
+			Vector3 newPos = mousePos;
+			Vector3 mouseDir = prevPos - mousePos;
+			if (isVertical)
             {
-                mousePos.x = transform.position.x;
+				if(mouseDir.y > 0)
+				{
+					row += 1;
+					if(row > 6)
+					{
+						row = 6;
+					}
+				}
+				else if(mouseDir.y < 0)
+				{
+					row -= 1;
+					if(row < 0)
+					{
+						row = 0;
+					}
+				}
+				if(length % 2 == 0)
+				{
+					newPos.x = control.grid[row, column].transform.position.x;
+					newPos.y = control.grid[row, column].transform.position.y - 0.5f;
+				}
+				else
+				{
+					newPos = control.grid[row, column].transform.position;
+				}
+				//newPos.x = transform.position.x;
             }
-            else
-            {
-                mousePos.y = transform.position.y;
+			else
+			{
+				if(mouseDir.x > 0)
+				{
+					column += 1;
+					if(column > 6)
+					{
+						column = 6;
+					}
+				}
+				else if(mouseDir.x < 0)
+				{
+					column -= 1;
+					if(column < 0)
+					{
+						column = 0;
+					}
+					
+				}
+				if(length % 2 == 0)
+				{
+					newPos.y = control.grid[row, column].transform.position.y;
+					newPos.x = control.grid[row, column].transform.position.x - 0.5f;
+				}
+				else
+				{
+					newPos = control.grid[row, column].transform.position;
+				}
+				//newPos.y = transform.position.y;
             }
-            transform.position = mousePos;
+            transform.position = newPos;
         }
     }
 }
