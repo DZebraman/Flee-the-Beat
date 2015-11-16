@@ -11,7 +11,8 @@ public class ControllerScript : MonoBehaviour
     {
 		GameObject[] cells = GameObject.FindGameObjectsWithTag("Cell");
 		for (int i = 0; i < cells.Length; i++) {
-			grid [cells[i].GetComponent<Cell> ().row, cells[i].GetComponent<Cell> ().column] = cells[i];
+			Cell thisCell = cells[i].GetComponent<Cell> ();
+			grid [thisCell.row, thisCell.column] = cells[i];
 		}
     }
 
