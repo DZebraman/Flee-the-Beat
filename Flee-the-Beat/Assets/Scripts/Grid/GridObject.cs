@@ -8,6 +8,7 @@ public class GridObject : MonoBehaviour {
 	public int sizeX,sizeY;
 
 	public bool isVertical;
+	public bool isPlayer;
 
 	Vector3 mousePos;
 	

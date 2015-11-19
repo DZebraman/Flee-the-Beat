@@ -8,6 +8,7 @@ public class GridManager : MonoBehaviour {
 		public Vector3 pos;
 		public GameObject gO;
 		public GridObject gridObject;
+		public bool isGoal;
 	}
 
 	private struct GridObjectPackage{
@@ -31,6 +32,8 @@ public class GridManager : MonoBehaviour {
 
 	public int gridSize;
 	public float gridSpacing;
+
+	public Vector2 goalPos;
 
 	// Use this for initialization
 	void Awake () {
@@ -81,6 +84,8 @@ public class GridManager : MonoBehaviour {
 
 			gridObjectRef[tempGrid] = tempPackage;
 		}
+
+		grid[(int)goalPos.x,(int)goalPos.y].isGoal = true;
 	}
 
 	public void MoveGridObject(GridObject tempGrid){
@@ -159,11 +164,18 @@ public class GridManager : MonoBehaviour {
 
 	//fills in the corresponding grid spaces
 	void GridFill(GridObject tempGrid){
-		for(int k = 0; k < tempGrid.sizeX; k++){
-			grid[tempGrid.xPos - k,tempGrid.yPos].gridObject = tempGrid;
-		}
-		for(int k = 0; k < tempGrid.sizeY; k++){
-			grid[tempGrid.xPos,tempGrid.yPos-k].gridObject = tempGrid;
+		if(!tempGrid.isVertical){
+			for(int k = 0; k < tempGrid.sizeX; k++){
+				grid[tempGrid.xPos - k,tempGrid.yPos].gridObject = tempGrid;
+				if(grid[tempGrid.xPos - k,tempGrid.yPos].isGoal && tempGrid.isPlayer)
+					Debug.Log("You are Winner");
+			}
+		}else if(tempGrid.isVertical){
+			for(int k = 0; k < tempGrid.sizeY; k++){
+				grid[tempGrid.xPos,tempGrid.yPos-k].gridObject = tempGrid;
+				if(grid[tempGrid.xPos,tempGrid.yPos-k].isGoal && tempGrid.isPlayer)
+					Debug.Log("You are Winner");
+			}
 		}
 	}
 
@@ -174,6 +186,9 @@ public class GridManager : MonoBehaviour {
 					Gizmos.color = Color.green;
 					if (grid [i, k].gridObject != null) {
 						Gizmos.color = Color.red;
+					}
+					if(grid[i,k].isGoal){
+						Gizmos.color = Color.yellow;
 					}
 					Gizmos.DrawWireCube (grid [i, k].pos, Vector3.one);
 				}
