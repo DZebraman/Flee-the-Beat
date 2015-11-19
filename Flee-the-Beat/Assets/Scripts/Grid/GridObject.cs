@@ -7,6 +7,8 @@ public class GridObject : MonoBehaviour {
 	public int xPos,yPos;
 	public int sizeX,sizeY;
 
+	public bool isVertical;
+
 	Vector3 mousePos;
 	
 	GridManager scriptMaster;

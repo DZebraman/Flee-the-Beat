@@ -65,7 +65,6 @@ LightmapSettings:
     m_TextureCompression: 1
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
-    m_ReflectionCompression: 2
   m_LightmapSnapshot: {fileID: 0}
   m_RuntimeCPUUsage: 25
 --- !u!196 &4
@@ -85,6 +84,9 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!127 &5
+LevelGameManager:
+  m_ObjectHideFlags: 0
 --- !u!1 &950633850
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,6 +121,7 @@ MonoBehaviour:
   yPos: 2
   sizeX: 1
   sizeY: 2
+  isVertical: 1
 --- !u!23 &950633852
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -242,7 +245,6 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
-  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -294,6 +296,7 @@ MonoBehaviour:
   yPos: 1
   sizeX: 3
   sizeY: 1
+  isVertical: 0
 --- !u!23 &1285017467
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -383,6 +386,7 @@ MonoBehaviour:
   yPos: 5
   sizeX: 1
   sizeY: 2
+  isVertical: 1
 --- !u!23 &1755619163
 MeshRenderer:
   m_ObjectHideFlags: 0

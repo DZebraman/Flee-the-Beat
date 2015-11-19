@@ -10,16 +10,30 @@ public class SlidableTile : MonoBehaviour
 	Vector3 mousePos, prevPos;
 	public int length;
 
+	private CharacterController rigid;
+
     // Use this for initialization
     void Start()
     {
 		control = GameObject.Find("Controller").GetComponent<ControllerScript> ();
+		rigid = GetComponent<CharacterController> ();
     }
 
     // Update is called once per frame
     void Update()
     {
-		Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+		Vector3 newPos = Vector3.zero;
+		newPos.x = control.grid[row, column].transform.position.x;
+		newPos.y = control.grid [row, column].transform.position.y;
+
+		if (length % 2 == 0 && isVertical) {
+			newPos.y = control.grid [row, column].transform.position.y - .5f;
+		}
+		if (!isVertical && length % 2 == 0){
+			newPos.x = control.grid[row, column].transform.position.x - .5f;;
+		}
+
+		rigid.Move (newPos - transform.position);
     }
 
     void OnMouseOver()
@@ -76,14 +90,14 @@ public class SlidableTile : MonoBehaviour
 				//newPos.x = transform.position.x;
             }
 			else{
-				if(mouseDir.y > 0){
-					column += 1;
+				if(mouseDir.x > 0){
+					column += direction;
 					if(column > 6){
 						column = 6;
 					}
 				}
-				else if(mouseDir.y < 0){
-					column -= 1;
+				else if(mouseDir.x < 0){
+					column -= direction;
 					if(column < 0){
 						column = 0;
 					}	
@@ -100,9 +114,9 @@ public class SlidableTile : MonoBehaviour
             //transform.position = Vector3.Lerp(transform.position,newPos,Time.deltaTime);
 			//Vector3 temp = transform.position;
 			//temp.y = Mathf.Lerp(temp.y,mousePos.y,Time.deltaTime);
-			transform.position = newPos;
 			//transform.position = newPos;
-
+			//transform.position = newPos;
+			rigid.Move(newPos-transform.position);
         }
     }
 }
