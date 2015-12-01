@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 424352}
   - 212: {fileID: 21246060}
   - 114: {fileID: 11452048}
-  - 65: {fileID: 6596142}
+  - 65: {fileID: 6560332}
   m_Layer: 0
   m_Name: BeatCounter
   m_TagString: Clickable
@@ -42,7 +42,7 @@ Transform:
   m_GameObject: {fileID: 105432}
   m_LocalRotation: {x: .707109213, y: 0, z: 0, w: -.707104325}
   m_LocalPosition: {x: -3.45418692, y: 3.81342936, z: -3.6568222}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: .25, y: .25, z: .25}
   m_Children:
   - {fileID: 426712}
   m_Father: {fileID: 0}
@@ -59,7 +59,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 424352}
   m_RootOrder: 0
---- !u!65 &6596142
+--- !u!65 &6560332
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -144,15 +144,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: .25
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: .25
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: .25
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_TagString

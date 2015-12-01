@@ -10,15 +10,20 @@ public class GridObject : MonoBehaviour {
 	public bool isVertical;
 	public bool isPlayer;
 
+	public static bool onBeat;
+
 	Vector3 mousePos;
 	
 	GridManager scriptMaster;
 
 	void Start(){
+		onBeat = false;
 		scriptMaster = GameObject.FindGameObjectWithTag("GameController").GetComponent<GridManager>();
 	}
 
 	void OnMouseDrag(){
-		scriptMaster.MoveGridObject(this);
+		if(onBeat){
+			scriptMaster.MoveGridObject(this);
+		}
 	}
 }

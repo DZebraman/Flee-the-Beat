@@ -91,7 +91,6 @@ public class GridManager : MonoBehaviour {
 	public void MoveGridObject(GridObject tempGrid){
 		mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		mousePos.z = transform.position.z;
-		Vector3 newPos = mousePos;
 		Vector3 mouseDir = tempGrid.gameObject.transform.position - mousePos;
 		int direction = (int)Mathf.Floor(Vector3.Distance(tempGrid.gameObject.transform.position,mousePos));
 

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 public class ClickOn : MonoBehaviour {
 
-	Dictionary<GameObject,ClickAble> isClickableMap;
+	static Dictionary<GameObject,ClickAble> isClickableMap;
 
 	// Use this for initialization
 	void Start () {
@@ -14,18 +14,22 @@ public class ClickOn : MonoBehaviour {
 			isClickableMap[clickable[i]] = temp;
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+	void Update(){
 		if(Input.GetMouseButtonDown(0)){
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			if(Physics.Raycast(ray,out hit)){
-				if(isClickableMap[hit.transform.gameObject] != null){
+				if(isClickableMap.ContainsKey(hit.transform.gameObject)){
 					Debug.Log("Clicked");
 					isClickableMap[hit.transform.gameObject].isClicked = true;
 				}
 			}
 		}
+	}
+
+	void OnMouseDown(){
+		Debug.Log("Clicked");
+		isClickableMap[gameObject].isClicked = true;
 	}
 }
