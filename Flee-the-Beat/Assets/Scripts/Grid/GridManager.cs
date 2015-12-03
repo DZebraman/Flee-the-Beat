@@ -43,11 +43,12 @@ public class GridManager : MonoBehaviour {
 		gridObjectXY = new Dictionary<GridObject, Vector2>();
 		gridObjectRef = new Dictionary<GridObject, GridObjectPackage>();
 
+		float depthIterator = 0;
 
 		for(int i = 0; i < gridSize; i++){
 			for(int k = 0; k < gridSize; k++){
 				grid[i,k] = new gridTile();
-				grid[i,k].pos = (new Vector3(i,k,0.0f)) * gridSpacing;
+				grid[i,k].pos = (new Vector3(i,k,depthIterator++ * 0.03f)) * gridSpacing;
 				grid[i,k].gO = (GameObject)Instantiate(Resources.Load("Prefabs/GridMarker"),grid[i,k].pos,Quaternion.identity);
 			}
 		}

@@ -32,6 +32,8 @@ namespace UnityStandardAssets.ImageEffects
         private Material m_SeparableBlurMaterial;
         private Material m_ChromAberrationMaterial;
 
+		private float prevLoudness = 0;
+		public float lerpSpeed;
 
         public override bool CheckResources ()
         {
@@ -54,6 +56,20 @@ namespace UnityStandardAssets.ImageEffects
                 Graphics.Blit (source, destination);
                 return;
             }
+
+			AudioSource music = GameObject.Find ("ScriptAnchor").GetComponent<AudioSource>();
+			
+			float[] spectrum = music.GetSpectrumData(256,0,FFTWindow.Blackman);
+			float loudness = 0;
+			
+			for(int i = 1; i < 30; i++){
+				loudness += spectrum[i] * i*16;
+			}
+			loudness /= 29;
+			loudness = Mathf.Lerp(prevLoudness,loudness,Time.deltaTime*lerpSpeed);
+			prevLoudness = loudness;
+
+			chromaticAberration = Mathf.Lerp(chromaticAberration,loudness,Time.deltaTime*lerpSpeed);
 
             int rtW = source.width;
             int rtH = source.height;

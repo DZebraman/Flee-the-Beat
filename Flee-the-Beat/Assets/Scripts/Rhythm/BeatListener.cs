@@ -42,8 +42,6 @@ public class BeatListener : MonoBehaviour {
 	void Awake () {
 		cameraAudio = Camera.main.GetComponent<AudioSource>();
 		
-		//cameraAudio.time = 120;
-		
 		GridObject.onBeat = false;
 		onBeat = false;
 

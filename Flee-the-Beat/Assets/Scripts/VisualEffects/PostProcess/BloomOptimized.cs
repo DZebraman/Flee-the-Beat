@@ -38,6 +38,9 @@ namespace UnityStandardAssets.ImageEffects
         public Shader fastBloomShader = null;
         private Material fastBloomMaterial = null;
 
+		private float prevLoudness = 0;
+		public float lerpSpeed;
+		// = GameObject.Find ("ScriptAnchor").GetComponent<AudioSource>();
 
         public override bool CheckResources ()
 		{
@@ -63,6 +66,18 @@ namespace UnityStandardAssets.ImageEffects
                 Graphics.Blit (source, destination);
                 return;
             }
+			AudioSource music = GameObject.Find ("ScriptAnchor").GetComponent<AudioSource>();
+
+			float[] spectrum = music.GetSpectrumData(256,0,FFTWindow.Blackman);
+			float loudness = 0;
+			for(int i = 1; i < 61; i++){
+				loudness += spectrum[i] * i*8;
+			}
+			loudness /= 61;
+			loudness = Mathf.Lerp(prevLoudness,loudness,Time.deltaTime*lerpSpeed);
+			prevLoudness = loudness;
+			//Debug.Log(loudness);
+			intensity = Mathf.Lerp(intensity,loudness,Time.deltaTime*lerpSpeed);
 
             int divider = resolution == Resolution.Low ? 4 : 2;
             float widthMod = resolution == Resolution.Low ? 0.5f : 1.0f;

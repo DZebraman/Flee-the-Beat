@@ -16,7 +16,8 @@ namespace UnityStandardAssets.ImageEffects
         public Shader fishEyeShader = null;
         private Material fisheyeMaterial = null;
 
-
+		private float prevLoudness = 0;
+		public float lerpSpeed;
         public override bool CheckResources ()
 		{
             CheckSupport (false);
@@ -34,6 +35,20 @@ namespace UnityStandardAssets.ImageEffects
                 Graphics.Blit (source, destination);
                 return;
             }
+
+			AudioSource music = GameObject.Find ("ScriptAnchor").GetComponent<AudioSource>();
+			
+			float[] spectrum = music.GetSpectrumData(256,0,FFTWindow.Blackman);
+			float loudness = 0;
+
+			for(int i = 1; i < 30; i++){
+				loudness += spectrum[i] * i*8;
+			}
+			loudness /= 30;
+			loudness = Mathf.Lerp(prevLoudness,loudness,Time.deltaTime*lerpSpeed);
+			prevLoudness = loudness;
+			strengthX = Mathf.Lerp(strengthX,loudness,Time.deltaTime*lerpSpeed) / 10;
+			strengthY = Mathf.Lerp(strengthY,loudness,Time.deltaTime*lerpSpeed) / 5;
 
             float oneOverBaseSize = 80.0f / 512.0f; // to keep values more like in the old version of fisheye
 
