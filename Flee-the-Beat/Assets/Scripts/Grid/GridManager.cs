@@ -92,7 +92,7 @@ public class GridManager : MonoBehaviour {
 		mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		mousePos.z = transform.position.z;
 		Vector3 mouseDir = tempGrid.gameObject.transform.position - mousePos;
-		int direction = (int)Mathf.Floor(Vector3.Distance(tempGrid.gameObject.transform.position,mousePos));
+		int direction = (int)Mathf.Ceil(mouseDir.magnitude);
 
 		if (direction > gridSpacing) {
 			

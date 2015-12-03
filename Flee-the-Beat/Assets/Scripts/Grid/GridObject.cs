@@ -13,12 +13,25 @@ public class GridObject : MonoBehaviour {
 	public static bool onBeat;
 
 	Vector3 mousePos;
-	
 	GridManager scriptMaster;
+
+	private bool clicked;
 
 	void Start(){
 		onBeat = false;
+		clicked = false;
 		scriptMaster = GameObject.FindGameObjectWithTag("GameController").GetComponent<GridManager>();
+	}
+
+	void OnMouseDown(){
+		if(onBeat){
+			clicked = true;
+			Debug.Log("Good");
+		}
+	}
+
+	void Update(){
+		//clicked = false;
 	}
 
 	void OnMouseDrag(){
