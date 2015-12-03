@@ -85,7 +85,6 @@ public class BeatListener : MonoBehaviour {
 		loudness /= 99;
 
 		if(loudness > 0.000005f && !onBeat){
-			Debug.Log("Beat");
 			onBeat = true;
 			GridObject.onBeat = true;
 			beat++;

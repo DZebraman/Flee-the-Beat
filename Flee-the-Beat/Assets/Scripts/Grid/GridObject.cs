@@ -26,7 +26,6 @@ public class GridObject : MonoBehaviour {
 	void OnMouseDown(){
 		if(onBeat){
 			clicked = true;
-			Debug.Log("Good");
 		}
 	}
 
