@@ -105,11 +105,13 @@ public class GridManager : MonoBehaviour {
 					if(grid[x,y+1].gridObject == null || grid[x,y+1].gridObject == tempGrid){
 						UpdatePosition (tempGrid, 0, 1);
 						GridFill (tempGrid);
+						Debug.Log("Onbeat drag");
 					}
 				} else if (mouseDir.y > 0 && tempGrid.yPos - tempGrid.sizeY > -1) {
 					if(grid[x,(y-tempGrid.sizeY)].gridObject == null ||  grid[x,(y-tempGrid.sizeY)].gridObject == tempGrid){
 						UpdatePosition (tempGrid, 0, -1);
 						GridFill (tempGrid);
+						Debug.Log("Onbeat drag");
 					}
 				}
 			} else if (!tempGrid.isVertical) {
@@ -117,12 +119,14 @@ public class GridManager : MonoBehaviour {
 					if(grid[x+1,y].gridObject == null ||  grid[x+1,y].gridObject == tempGrid){
 						UpdatePosition(tempGrid,1,0);
 						GridFill(tempGrid);
+						Debug.Log("Onbeat drag");
 					}
 				}
 				else if(mouseDir.x > 0 && tempGrid.xPos - tempGrid.sizeX > -1){
 					if(grid[x-tempGrid.sizeX,y].gridObject == null || grid[x-tempGrid.sizeX,y].gridObject == tempGrid){
 						UpdatePosition(tempGrid,-1,0);
 						GridFill(tempGrid);
+						Debug.Log("Onbeat drag");
 					}
 				}
 			}

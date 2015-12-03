@@ -72,7 +72,15 @@ public class BeatListener : MonoBehaviour {
 		currentTime = 0;
 		clicked = false;
 	}
-	
+
+	IEnumerator beatEnd(){
+		yield return new WaitForSeconds(0.125f);
+		beatCounters[beat].mat.color = Color.red * 0.75f;
+		beatCounters[beat].go.transform.localScale = Vector3.one * scaleMin;
+		onBeat = false;
+		GridObject.onBeat = false;
+	}
+
 	// Update is called once per frame
 	void LateUpdate () {
 
@@ -94,10 +102,11 @@ public class BeatListener : MonoBehaviour {
 		}
 		if(loudness < 0.000005f && onBeat){
 			//Debug.Log("Beat");
-			beatCounters[beat].mat.color = Color.red * 0.75f;
-			beatCounters[beat].go.transform.localScale = Vector3.one * scaleMin;
-			onBeat = false;
-			GridObject.onBeat = false;
+			//beatCounters[beat].mat.color = Color.red * 0.75f;
+			//beatCounters[beat].go.transform.localScale = Vector3.one * scaleMin;
+			//onBeat = false;
+			//GridObject.onBeat = false;
+			StartCoroutine("beatEnd");
 		}
 
 		for(int i = 0; i < beatCounters.Length; i++){
