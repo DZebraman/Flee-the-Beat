@@ -34,6 +34,7 @@ namespace UnityStandardAssets.ImageEffects
 
 		private float prevLoudness = 0;
 		public float lerpSpeed;
+		public float lerpSpeed2;
 
         public override bool CheckResources ()
         {
@@ -63,13 +64,13 @@ namespace UnityStandardAssets.ImageEffects
 			float loudness = 0;
 			
 			for(int i = 1; i < 30; i++){
-				loudness += spectrum[i] * i*16;
+				loudness += spectrum[i] * i*30;
 			}
 			loudness /= 29;
-			loudness = Mathf.Lerp(prevLoudness,loudness,Time.deltaTime*lerpSpeed);
+			loudness = Mathf.Lerp(prevLoudness,loudness,Time.deltaTime*lerpSpeed2);
 			prevLoudness = loudness;
 
-			chromaticAberration = Mathf.Lerp(chromaticAberration,loudness,Time.deltaTime*lerpSpeed);
+			chromaticAberration = loudness;
 
             int rtW = source.width;
             int rtH = source.height;

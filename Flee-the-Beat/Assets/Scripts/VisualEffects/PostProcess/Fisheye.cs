@@ -18,6 +18,7 @@ namespace UnityStandardAssets.ImageEffects
 
 		private float prevLoudness = 0;
 		public float lerpSpeed;
+		public float lerpSpeed2;
         public override bool CheckResources ()
 		{
             CheckSupport (false);
@@ -45,10 +46,10 @@ namespace UnityStandardAssets.ImageEffects
 				loudness += spectrum[i] * i*8;
 			}
 			loudness /= 30;
-			loudness = Mathf.Lerp(prevLoudness,loudness,Time.deltaTime*lerpSpeed);
+			loudness = Mathf.Lerp(prevLoudness,loudness,lerpSpeed2);
 			prevLoudness = loudness;
-			strengthX = Mathf.Lerp(strengthX,loudness,Time.deltaTime*lerpSpeed) / 10;
-			strengthY = Mathf.Lerp(strengthY,loudness,Time.deltaTime*lerpSpeed) / 5;
+			strengthX = loudness / 20;//Mathf.Lerp(strengthX,loudness,Time.deltaTime*lerpSpeed) / 10;
+			strengthY = loudness / 10;//Mathf.Lerp(strengthY,loudness,Time.deltaTime*lerpSpeed) / 5;
 
             float oneOverBaseSize = 80.0f / 512.0f; // to keep values more like in the old version of fisheye
 
