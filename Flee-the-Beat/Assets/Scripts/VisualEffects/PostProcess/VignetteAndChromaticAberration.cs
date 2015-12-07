@@ -64,7 +64,7 @@ namespace UnityStandardAssets.ImageEffects
 			float loudness = 0;
 			
 			for(int i = 1; i < 30; i++){
-				loudness += spectrum[i] * i*30;
+				loudness += spectrum[i] * i*22;
 			}
 			loudness /= 29;
 			loudness = Mathf.Lerp(prevLoudness,loudness,Time.deltaTime*lerpSpeed2);

@@ -71,7 +71,7 @@ namespace UnityStandardAssets.ImageEffects
 			float[] spectrum = music.GetSpectrumData(256,0,FFTWindow.Blackman);
 			float loudness = 0;
 			for(int i = 1; i < 61; i++){
-				loudness += spectrum[i] * i*8;
+				loudness += spectrum[i] * i*4;
 			}
 			loudness /= 61;
 			loudness = Mathf.Lerp(prevLoudness,loudness,Time.deltaTime*lerpSpeed);

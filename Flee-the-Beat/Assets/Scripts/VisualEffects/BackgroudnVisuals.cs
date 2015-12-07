@@ -39,7 +39,6 @@ public class BackgroudnVisuals : MonoBehaviour {
 		loudness = Mathf.Lerp(prevLoudness,loudness,Time.deltaTime*lerpSpeed);
 		prevLoudness = loudness;
 		loudness *= 100;
-		Debug.Log(loudness);
 
 		Quaternion temp = Quaternion.Lerp(lines[0,0].transform.rotation,Quaternion.Euler(new Vector3(0,0,loudness)),Time.deltaTime*lerpSpeed2);
 
