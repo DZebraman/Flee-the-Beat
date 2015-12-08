@@ -65,7 +65,6 @@ LightmapSettings:
     m_TextureCompression: 1
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
-    m_ReflectionCompression: 2
   m_LightmapSnapshot: {fileID: 0}
   m_RuntimeCPUUsage: 25
 --- !u!196 &4
@@ -85,6 +84,9 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!127 &5
+LevelGameManager:
+  m_ObjectHideFlags: 0
 --- !u!1001 &110685058
 Prefab:
   m_ObjectHideFlags: 0
@@ -920,7 +922,6 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
-  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -954,7 +955,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -1026,7 +1026,7 @@ MonoBehaviour:
   blurIterations: 2
   blurType: 0
   fastBloomShader: {fileID: 4800000, guid: 68a00c837b82e4c6d92e7da765dc5f1d, type: 3}
-  lerpSpeed: 10
+  lerpSpeed: 4
 --- !u!114 &1152606669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1070,8 +1070,8 @@ MonoBehaviour:
   separableBlurShader: {fileID: 4800000, guid: e97c14fbb5ea04c3a902cc533d7fc5d1, type: 3}
   chromAberrationShader: {fileID: 4800000, guid: 2b4f29398d9484ccfa9fd220449f5eee,
     type: 3}
-  lerpSpeed: 30
-  lerpSpeed2: 20
+  lerpSpeed: 0
+  lerpSpeed2: 21.1000004
 --- !u!114 &1152606671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1086,8 +1086,8 @@ MonoBehaviour:
   strengthX: 0
   strengthY: 0
   fishEyeShader: {fileID: 4800000, guid: 874ceab4425f64bccb1d14032f4452b1, type: 3}
-  lerpSpeed: 10
-  lerpSpeed2: .0299999993
+  lerpSpeed: 0
+  lerpSpeed2: .100000001
 --- !u!114 &1152606672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1662,7 +1662,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
