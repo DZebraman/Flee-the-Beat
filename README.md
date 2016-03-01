@@ -1,3 +1,3 @@
 # Flee-the-Beat
 
-Butts
+Rhythm based puzzle game. More of an experiment in tying music to gampelay. Cool concept, didn't really work out gameplay wise.
